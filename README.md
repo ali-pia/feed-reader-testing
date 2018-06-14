@@ -7,7 +7,6 @@
 * [Instructions](#instructions)
 * [Tasks Implemented](#tasksImplemented)
 * [Built With](#builtWith)
-* [Contributing](#contributing)
 * [Useful links](#usefulLinks)
 
 ## Why this Project?
@@ -63,11 +62,7 @@ On click it displays all the webpages from where you can receive feed.
     CSS
     JQuery
     Jasmine
-    
 
-## Contributing
-
-Please read CONTRIBUTING.md for details.
 
 ## Useful links
     
