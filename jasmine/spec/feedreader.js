@@ -1,20 +1,19 @@
 /* feedreader.js
  *
- * Spec file that Jasmine will read and contains
- * all of the tests that will be run against your application.
- */
+ * Jasmine' s spec file contains
+ * application's tests.
 
-/* We're placing all of our tests within the $() function,
- * since some of these tests may require DOM elements. We want
- * to ensure they don't run until the DOM is ready.
+/* All tests are processed without function $ ()
+ * since some of these tests may require DOM elements. 
+ * They don't run until the DOM is ready.
  */
 $(function () {
     /* First test suite - RSS feeds definitions.
-     * The allFeeds variable in our applicationa test suite just contains
+     * The allFeeds variable just contains
      * a related set of tests. 
      */
     describe('RSS Feeds', function () {
-        /* First test - allFeeds variable has been defined and that it is not
+        /* allFeeds variable has been defined and that it is not
          * empty.  
          */
         it('Feed are defined', function () {
@@ -24,7 +23,8 @@ $(function () {
 
 
         /* Test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
+         * in the allFeeds object.
+         * It has a URL defined
          * and that the URL is not empty.
          */
 
@@ -34,10 +34,9 @@ $(function () {
             });
         });
 
-
-        /* Test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
+         /* Test that loops through each feed
+         * in the allFeeds object.
+         * It is defined and not empty.
          */
 
         it('Feed has name', function () {
@@ -48,7 +47,7 @@ $(function () {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* New test suite named "The menu" */
 
     describe('The menu', function () {
 
@@ -62,8 +61,8 @@ $(function () {
         });
 
         /* Test - menu changes visibility when the menu icon is clicked. 
-         * Write two expectations: does the menu display when
-         * clicked and does it hide when clicked again.
+         * Two expectations:on click 
+         * and does it hide when clicked again.
          */
 
         it('Working toggle on click event', function () {
@@ -74,14 +73,48 @@ $(function () {
         });
     });
 
-    /* Write a new test suite named "Initial Entries" */
+    /* Test suite named "Initial Entries" */
 
     describe('Initial Entries', function () {
-        /* TODO: Write a test that ensures when the loadFeed
+        
+        /* Test when loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
+         * LoadFeed() is asynchronous so  require
          * the use of Jasmine's beforeEach and asynchronous done() function.
+         */
+
+        beforeEach(function (done) {
+            loadFeed(0, function () {
+                done();
+            });
+        });
+
+        it('Feed has at least a single entry', function () {
+            expect($('.feed .entry').length).toBeGreaterThan(0);
+        });
+    });
+
+    /* Test suite named "New Feed Selection" */
+
+    describe('New Feed Selection', function () {
+        var firstFeed, secondFeed;
+
+        /* Test when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * LoadFeed() is asynchronous.
+         */
+        beforeEach((done)=> {
+    loadFeed(0, function() {
+        firstFeed = $('.feed').html()
+        loadFeed(1, function() {
+        secondFeed = $('.feed').html()
+            done(); // call done here
+        });
+    });
+});
+}());
+ asynchronous done() function.
          */
 
         beforeEach(function (done) {
