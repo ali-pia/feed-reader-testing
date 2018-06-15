@@ -105,52 +105,18 @@ $(function () {
          * LoadFeed() is asynchronous.
          */
         beforeEach((done)=> {
-    loadFeed(0, function() {
-        firstFeed = $('.feed').html()
-        loadFeed(1, function() {
-        secondFeed = $('.feed').html()
-            done(); // call done here
-        });
-    });
-});
-}());
- asynchronous done() function.
-         */
-
-        beforeEach(function (done) {
-            loadFeed(0, function () {
-                done();
-            });
-        });
-
-        it('Feed has at least a single entry', function () {
-            expect($('.feed .entry').length).toBeGreaterThan(0);
-        });
-    });
-
-    /* Write a new test suite named "New Feed Selection" */
-
-    describe('New Feed Selection', function () {
-        var firstFeed, secondFeed;
-
-        /* Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
-        beforeEach(function (done) {
-            $('.feed').empty();
-            loadFeed(0, function () {
-                firstFeed = $('.feed').find(allFeeds.url);
-                done();
-            });
-            loadFeed(1, function () {
-                secondFeed = $('.feed').find(allFeeds.url);
-                done();
-            });
+          loadFeed(0, function() {
+          firstFeed = $('.feed').html()
+          });
+          loadFeed(1, function() {
+          secondFeed = $('.feed').html()
+          done(); 
+          });
         });
 
         it('Two feeds are different', function () {
             expect(firstFeed).not.toBe(secondFeed);
         });
     });
-}());
+
+});
